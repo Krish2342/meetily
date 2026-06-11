@@ -20,6 +20,11 @@
 A privacy-first AI meeting assistant that captures, transcribes, and summarizes meetings entirely on your local machine — no cloud required. Built for professionals who need complete control over their sensitive data.
 </p>
 
+<br/>
+<p align="center">
+  <img src="docs/meetily_demo.gif" width="650" alt="Meetily Demo" />
+</p>
+
 </div>
 
 ---
