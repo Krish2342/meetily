@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
 @keyframes vibrate {
   0% { transform: translate(0); }
   20% { transform: translate(-2px, 2px); }
@@ -24,75 +28,122 @@
   animation: fade-in 0.4s ease-out;
 }
 
+/* ── Shadcn / Tailwind Design Tokens ─────────────────────────────────────── */
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Custom semantic tokens */
+    --sidebar-bg: 220 25% 98%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-text: 222 47% 11%;
+    --sidebar-text-muted: 215 16% 47%;
+    --sidebar-hover: 214 32% 94%;
+    --sidebar-active: 221 100% 95%;
+    --sidebar-active-text: 221 83% 40%;
+
+    --surface-1: 0 0% 100%;
+    --surface-2: 220 25% 98%;
+    --surface-3: 214 32% 94%;
+
+    --text-primary: 222 47% 11%;
+    --text-secondary: 215 16% 47%;
+    --text-muted: 215 20% 65%;
+
+    --shadow-color: 222 47% 11%;
+
+    --transDur: 0.3s;
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 222 47% 7%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 9%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 47% 9%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 47% 14%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 222 47% 14%;
+    --muted-foreground: 215 20% 60%;
+    --accent: 222 47% 14%;
+    --accent-foreground: 213 31% 91%;
+    --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 222 47% 18%;
+    --input: 222 47% 14%;
+    --ring: 217 91% 60%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Custom semantic tokens — dark */
+    --sidebar-bg: 222 47% 8%;
+    --sidebar-border: 222 47% 16%;
+    --sidebar-text: 213 31% 91%;
+    --sidebar-text-muted: 215 20% 55%;
+    --sidebar-hover: 222 47% 14%;
+    --sidebar-active: 217 91% 18%;
+    --sidebar-active-text: 217 91% 70%;
+
+    --surface-1: 222 47% 9%;
+    --surface-2: 222 47% 11%;
+    --surface-3: 222 47% 14%;
+
+    --text-primary: 213 31% 91%;
+    --text-secondary: 215 20% 60%;
+    --text-muted: 215 20% 45%;
   }
 }
 
+/* ── Base Styles ──────────────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border;
   }
-  /* html, */
+
+  html, body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     @apply bg-background text-foreground;
     overflow: hidden;
     height: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Make the window draggable */
+  /* Titlebar drag region */
   .titlebar {
     -webkit-app-region: drag;
     app-region: drag;
@@ -103,9 +154,9 @@
     app-region: no-drag;
   }
 
-  /* Custom scrollbar styles */
+  /* ── Custom Scrollbar ── */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
@@ -113,21 +164,20 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 3px;
+    background: hsl(var(--border));
+    border-radius: 999px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #9ca3af;
+    background: hsl(var(--muted-foreground));
   }
 
-  /* Firefox scrollbar */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: #d1d5db transparent;
+    scrollbar-color: hsl(var(--border)) transparent;
   }
 
-  /* BlockNote Editor - Override fixed dimensions for responsive layout */
+  /* ── BlockNote Overrides ── */
   .bn-container {
     width: 100% !important;
     max-width: none !important;
@@ -140,12 +190,10 @@
     overflow: visible !important;
   }
 
-  /* Disable internal scrolling - let parent handle all scrolling */
   .ProseMirror {
     overflow: visible !important;
   }
 
-  /* Ensure BlockNote content area is responsive */
   .bn-block-outer {
     max-width: 100% !important;
   }
@@ -154,10 +202,166 @@
     max-width: none !important;
   }
 
-  /* Disable scrolling on any BlockNote wrapper elements */
   [data-node-type] {
     overflow: visible !important;
   }
+}
+
+/* ── Sidebar Styling ──────────────────────────────────────────────────────── */
+.sidebar-root {
+  background-color: hsl(var(--sidebar-bg));
+  border-right: 1px solid hsl(var(--sidebar-border));
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.sidebar-item {
+  color: hsl(var(--sidebar-text));
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-item:hover {
+  background-color: hsl(var(--sidebar-hover));
+}
+
+.sidebar-item.active {
+  background-color: hsl(var(--sidebar-active));
+  color: hsl(var(--sidebar-active-text));
+  font-weight: 600;
+}
+
+.sidebar-label {
+  color: hsl(var(--sidebar-text-muted));
+}
+
+/* ── Global Dark Mode Overrides ──────────────────────────────────────────── */
+/* These catch any hardcoded Tailwind classes that don't use CSS vars */
+
+.dark .bg-white {
+  background-color: hsl(var(--surface-1)) !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: hsl(var(--surface-2)) !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: hsl(var(--surface-3)) !important;
+}
+
+.dark .bg-gray-200 {
+  background-color: hsl(222, 47%, 18%) !important;
+}
+
+.dark .bg-yellow-50 {
+  background-color: hsl(40, 50%, 12%) !important;
+}
+
+.dark .bg-blue-50 {
+  background-color: hsl(217, 50%, 12%) !important;
+}
+
+.dark .bg-blue-100 {
+  background-color: hsl(217, 50%, 16%) !important;
+}
+
+.dark .text-gray-900 {
+  color: hsl(var(--text-primary)) !important;
+}
+
+.dark .text-gray-800 {
+  color: hsl(var(--text-primary)) !important;
+}
+
+.dark .text-gray-700 {
+  color: hsl(213, 20%, 75%) !important;
+}
+
+.dark .text-gray-600 {
+  color: hsl(213, 20%, 65%) !important;
+}
+
+.dark .text-gray-500 {
+  color: hsl(var(--text-secondary)) !important;
+}
+
+.dark .text-gray-400 {
+  color: hsl(var(--text-muted)) !important;
+}
+
+.dark .border-gray-100 {
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .border-gray-200 {
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .border-yellow-100 {
+  border-color: hsl(40, 40%, 20%) !important;
+}
+
+.dark .shadow-sm {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4) !important;
+}
+
+/* Input dark mode */
+.dark input[type="text"],
+.dark input[type="search"],
+.dark textarea {
+  background-color: hsl(var(--surface-3)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--text-primary)) !important;
+}
+
+.dark input[type="text"]::placeholder,
+.dark input[type="search"]::placeholder,
+.dark textarea::placeholder {
+  color: hsl(var(--text-muted)) !important;
+}
+
+/* Focus ring dark mode */
+.dark input:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.25) !important;
+}
+
+/* Dialog / Modal dark mode */
+.dark [role="dialog"],
+.dark [data-radix-dialog-content] {
+  background-color: hsl(var(--surface-1)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--text-primary)) !important;
+}
+
+/* Dropdown menus */
+.dark [role="menu"],
+.dark [data-radix-dropdown-menu-content] {
+  background-color: hsl(var(--surface-1)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Tabs */
+.dark [role="tablist"] {
+  background-color: hsl(var(--surface-3)) !important;
+}
+
+/* Accordion */
+.dark [data-radix-accordion-content] {
+  background-color: hsl(var(--surface-2)) !important;
+}
+
+/* Tooltip */
+.dark [data-radix-tooltip-content] {
+  background-color: hsl(var(--surface-1)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--text-primary)) !important;
+}
+
+/* Sonner toast dark mode */
+.dark [data-sonner-toast] {
+  background-color: hsl(var(--surface-1)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--text-primary)) !important;
 }
 
 /* ── Markdown Summary Styles ─────────────────────────────────────────────── */
@@ -165,7 +369,8 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 0.9rem;
   line-height: 1.7;
-  color: #1a1a2e;
+  color: hsl(var(--text-primary));
+  transition: color 0.3s ease;
 }
 
 .markdown-summary h1,
@@ -175,11 +380,21 @@
   font-weight: 700;
   margin-top: 1.4em;
   margin-bottom: 0.5em;
-  color: #111827;
+  color: hsl(var(--text-primary));
 }
 
-.markdown-summary h1 { font-size: 1.4rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.3em; }
-.markdown-summary h2 { font-size: 1.2rem; border-bottom: 1px solid #f3f4f6; padding-bottom: 0.2em; }
+.markdown-summary h1 {
+  font-size: 1.4rem;
+  border-bottom: 2px solid hsl(var(--border));
+  padding-bottom: 0.3em;
+}
+
+.markdown-summary h2 {
+  font-size: 1.2rem;
+  border-bottom: 1px solid hsl(var(--border));
+  padding-bottom: 0.2em;
+}
+
 .markdown-summary h3 { font-size: 1rem; }
 
 .markdown-summary p {
@@ -198,12 +413,12 @@
 
 .markdown-summary strong {
   font-weight: 700;
-  color: #111827;
+  color: hsl(var(--text-primary));
 }
 
 .markdown-summary em {
   font-style: italic;
-  color: #374151;
+  color: hsl(var(--text-secondary));
 }
 
 .markdown-summary table {
@@ -217,21 +432,21 @@
 }
 
 .markdown-summary thead {
-  background: #f1f5f9;
+  background: hsl(var(--surface-3));
 }
 
 .markdown-summary th {
   padding: 10px 14px;
   text-align: left;
   font-weight: 700;
-  color: #374151;
-  border-bottom: 2px solid #e2e8f0;
+  color: hsl(var(--text-secondary));
+  border-bottom: 2px solid hsl(var(--border));
 }
 
 .markdown-summary td {
   padding: 9px 14px;
-  border-bottom: 1px solid #f1f5f9;
-  color: #374151;
+  border-bottom: 1px solid hsl(var(--border));
+  color: hsl(var(--text-secondary));
 }
 
 .markdown-summary tr:last-child td {
@@ -239,28 +454,28 @@
 }
 
 .markdown-summary tr:nth-child(even) td {
-  background: #f9fafb;
+  background: hsl(var(--surface-2));
 }
 
 .markdown-summary code {
-  background: #f1f5f9;
+  background: hsl(var(--surface-3));
   padding: 0.15em 0.4em;
   border-radius: 4px;
   font-size: 0.85em;
-  color: #6366f1;
+  color: hsl(var(--primary));
 }
 
 .markdown-summary blockquote {
-  border-left: 4px solid #6366f1;
+  border-left: 4px solid hsl(var(--primary));
   padding: 0.4em 1em;
-  background: #f5f3ff;
+  background: hsl(var(--surface-2));
   border-radius: 0 6px 6px 0;
-  color: #4b5563;
+  color: hsl(var(--text-secondary));
   margin: 0.8em 0;
 }
 
 .markdown-summary hr {
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid hsl(var(--border));
   margin: 1.2em 0;
 }

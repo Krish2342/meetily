@@ -26,6 +26,7 @@ import { MessageToast } from '../MessageToast';
 import Logo from '../Logo';
 import Info from '../Info';
 import { ComplianceNotification } from '../ComplianceNotification';
+import { ThemeToggle } from '../ThemeToggle';
 
 interface SidebarItem {
   id: string;
@@ -452,15 +453,13 @@ const Sidebar: React.FC = () => {
               <button
                 onClick={() => router.push('/')}
                 className={`p-2 rounded-lg transition-colors duration-150 ${
-                  isHomePage ? 'bg-gray-100' : 'hover:bg-gray-100'
+                  isHomePage ? 'bg-accent' : 'hover:bg-accent'
                 }`}
               >
-                <Home className="w-5 h-5 text-gray-600" />
+                <Home className="w-5 h-5 text-muted-foreground" />
               </button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              <p>Home</p>
-            </TooltipContent>
+            <TooltipContent side="right"><p>Home</p></TooltipContent>
           </Tooltip>
 
           <Tooltip>
@@ -468,7 +467,9 @@ const Sidebar: React.FC = () => {
               <button
                 onClick={handleRecordingToggle}
                 disabled={isRecording}
-                className={`p-2 ${isRecording ? 'bg-red-500 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'} rounded-full transition-colors duration-150 shadow-sm`}
+                className={`p-2 ${
+                  isRecording ? 'bg-red-400 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'
+                } rounded-full transition-colors duration-150 shadow-sm`}
               >
                 {isRecording ? (
                   <Square className="w-5 h-5 text-white" />
@@ -478,27 +479,22 @@ const Sidebar: React.FC = () => {
               </button>
             </TooltipTrigger>
             <TooltipContent side="right">
-              <p>{isRecording ? "Recording in progress..." : "Start Recording"}</p>
+              <p>{isRecording ? 'Recording in progress...' : 'Start Recording'}</p>
             </TooltipContent>
           </Tooltip>
 
           <Tooltip>
             <TooltipTrigger asChild>
               <button
-                onClick={() => {
-                  if (isCollapsed) toggleCollapse();
-                  toggleFolder('meetings');
-                }}
+                onClick={() => { if (isCollapsed) toggleCollapse(); toggleFolder('meetings'); }}
                 className={`p-2 rounded-lg transition-colors duration-150 ${
-                  isMeetingPage ? 'bg-gray-100' : 'hover:bg-gray-100'
+                  isMeetingPage ? 'bg-accent' : 'hover:bg-accent'
                 }`}
               >
-                <Calendar className="w-5 h-5 text-gray-600" />
+                <Calendar className="w-5 h-5 text-muted-foreground" />
               </button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              <p>Meeting Notes</p>
-            </TooltipContent>
+            <TooltipContent side="right"><p>Meeting Notes</p></TooltipContent>
           </Tooltip>
 
           <Tooltip>
@@ -506,18 +502,20 @@ const Sidebar: React.FC = () => {
               <button
                 onClick={() => router.push('/settings')}
                 className={`p-2 rounded-lg transition-colors duration-150 ${
-                  isSettingsPage ? 'bg-gray-100' : 'hover:bg-gray-100'
+                  isSettingsPage ? 'bg-accent' : 'hover:bg-accent'
                 }`}
               >
-                <Settings className="w-5 h-5 text-gray-600" />
+                <Settings className="w-5 h-5 text-muted-foreground" />
               </button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              <p>Settings</p>
-            </TooltipContent>
+            <TooltipContent side="right"><p>Settings</p></TooltipContent>
           </Tooltip>
 
           <Info isCollapsed={isCollapsed} />
+
+          <div className="flex items-center justify-center scale-[0.4] origin-center -ml-2">
+            <ThemeToggle />
+          </div>
         </div>
       </TooltipProvider>
     );
@@ -546,10 +544,13 @@ const Sidebar: React.FC = () => {
         <div
           className={`flex items-center transition-all duration-150 group ${
             item.type === 'folder' && depth === 0
-              ? 'p-3 text-lg font-semibold h-10 mx-3 mt-3 rounded-lg'
+              ? 'p-3 text-lg font-semibold h-10 mx-3 mt-3 rounded-lg text-foreground'
               : `px-3 py-2 my-0.5 rounded-md text-sm ${
-                  isActive ? 'bg-blue-100 text-blue-700 font-medium' :
-                  hasTranscriptMatch ? 'bg-yellow-50' : 'hover:bg-gray-50'
+                  isActive
+                    ? 'bg-primary/10 text-primary font-medium'
+                    : hasTranscriptMatch
+                    ? 'bg-yellow-50 dark:bg-yellow-900/20'
+                    : 'text-foreground hover:bg-accent'
                 } cursor-pointer`
           }`}
           style={item.type === 'folder' && depth === 0 ? {} : { paddingLeft }}
@@ -567,53 +568,47 @@ const Sidebar: React.FC = () => {
           {item.type === 'folder' ? (
             <>
               {item.id === 'meetings' ? (
-                <Calendar className="w-4 h-4 mr-2" />
+                <Calendar className="w-4 h-4 mr-2 text-muted-foreground" />
               ) : item.id === 'notes' ? (
-                <Calendar className="w-4 h-4 mr-2" />
+                <Calendar className="w-4 h-4 mr-2 text-muted-foreground" />
               ) : null}
-              <span className={depth === 0 ? "" : "font-medium"}>{item.title}</span>
+              <span className={depth === 0 ? '' : 'font-medium'}>{item.title}</span>
               <div className="ml-auto">
                 {isExpanded ? (
-                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
                 ) : (
-                  <ChevronRight className="w-4 h-4 text-gray-500" />
+                  <ChevronRight className="w-4 h-4 text-muted-foreground" />
                 )}
               </div>
               {searchQuery && item.id === 'meetings' && isSearching && (
-                <span className="ml-2 text-xs text-blue-500 animate-pulse">Searching...</span>
+                <span className="ml-2 text-xs text-primary animate-pulse">Searching...</span>
               )}
             </>
           ) : (
             <div className="flex flex-col w-full">
               <div className="flex items-center w-full">
                 {isMeetingItem ? (
-                  <div className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full mr-2 bg-gray-100">
-                    <File className="w-3.5 h-3.5 text-gray-600" />
+                  <div className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full mr-2 bg-muted">
+                    <File className="w-3.5 h-3.5 text-muted-foreground" />
                   </div>
                 ) : (
-                  <div className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full mr-2 bg-blue-100">
-                    <Plus className="w-3.5 h-3.5 text-blue-600" />
+                  <div className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full mr-2 bg-primary/15">
+                    <Plus className="w-3.5 h-3.5 text-primary" />
                   </div>
                 )}
-                <span className="flex-1 break-words">{item.title}</span>
+                <span className="flex-1 break-words text-sm text-foreground">{item.title}</span>
                 {isMeetingItem && (
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleEditStart(item.id, item.title);
-                      }}
-                      className="hover:text-blue-600 p-1 rounded-md hover:bg-blue-50 flex-shrink-0"
+                      onClick={(e) => { e.stopPropagation(); handleEditStart(item.id, item.title); }}
+                      className="hover:text-primary p-1 rounded-md hover:bg-primary/10 flex-shrink-0"
                       aria-label="Edit meeting title"
                     >
                       <Pencil className="w-4 h-4" />
                     </button>
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeleteModalState({ isOpen: true, itemId: item.id });
-                      }}
-                      className="hover:text-red-600 p-1 rounded-md hover:bg-red-50 flex-shrink-0"
+                      onClick={(e) => { e.stopPropagation(); setDeleteModalState({ isOpen: true, itemId: item.id }); }}
+                      className="hover:text-destructive p-1 rounded-md hover:bg-destructive/10 flex-shrink-0"
                       aria-label="Delete meeting"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -621,11 +616,10 @@ const Sidebar: React.FC = () => {
                   </div>
                 )}
               </div>
-              
-              {/* Show transcript match snippet if available */}
+
               {hasTranscriptMatch && (
-                <div className="mt-1 ml-8 text-xs text-gray-500 bg-yellow-50 p-1.5 rounded border border-yellow-100 line-clamp-2">
-                  <span className="font-medium text-yellow-600">Match:</span> {matchingResult.matchContext}
+                <div className="mt-1 ml-8 text-xs text-muted-foreground bg-yellow-50 dark:bg-yellow-900/20 p-1.5 rounded border border-yellow-100 dark:border-yellow-800/30 line-clamp-2">
+                  <span className="font-medium text-yellow-600 dark:text-yellow-400">Match:</span> {matchingResult.matchContext}
                 </div>
               )}
             </div>
@@ -645,100 +639,88 @@ const Sidebar: React.FC = () => {
       {/* Floating collapse button */}
       <button
         onClick={toggleCollapse}
-        className="absolute -right-6 top-20 z-50 p-1 bg-white hover:bg-gray-100 rounded-full shadow-lg border"
+        className="absolute -right-6 top-20 z-50 p-1 bg-background hover:bg-accent border border-border rounded-full shadow-lg transition-colors"
         style={{ transform: 'translateX(50%)' }}
       >
         {isCollapsed ? (
-          <ChevronRightCircle className="w-6 h-6" />
+          <ChevronRightCircle className="w-6 h-6 text-foreground" />
         ) : (
-          <ChevronLeftCircle className="w-6 h-6" />
+          <ChevronLeftCircle className="w-6 h-6 text-foreground" />
         )}
       </button>
 
-      <div 
-        className={`h-screen bg-white border-r shadow-sm flex flex-col transition-all duration-300 ${
+      <div
+        className={`h-screen bg-background border-r border-border flex flex-col transition-all duration-300 ${
           isCollapsed ? 'w-16' : 'w-64'
         }`}
       >
-        {/* Header with traffic light spacing */}
-        <div className="flex-shrink-0 h-22 flex items-center">
-        
-          {/* Title container */}
-          
-          
-          
+        {/* Header */}
+        <div className="flex-shrink-0 flex items-center">
           <div className="flex-1">
             {!isCollapsed && (
               <div className="p-3">
-                {/* <span className="text-lg text-center border rounded-full bg-blue-50 border-white font-semibold text-gray-700 mb-2 block items-center">
-                  <span>Meetily</span>
-                </span> */}
                 <Logo isCollapsed={isCollapsed} />
-                
-                <div className="relative mb-1">
-              <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
-                <Search className="h-3.5 w-3.5 text-gray-400" />
+                <div className="relative mb-1 mt-2">
+                  <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+                    <Search className="h-3.5 w-3.5 text-muted-foreground" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search meeting content..."
+                    value={searchQuery}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    className="block w-full pl-8 pr-3 py-1.5 bg-muted border border-border rounded-md text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => handleSearchChange('')}
+                      className="absolute inset-y-0 right-0 pr-2 flex items-center text-muted-foreground hover:text-foreground"
+                    >
+                      <span className="text-xs">×</span>
+                    </button>
+                  )}
+                </div>
               </div>
-              <input
-                type="text"
-                placeholder="Search meeting content..."
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="block w-full pl-8 pr-3 py-1.5 border border-gray-200 rounded-md text-xs placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => handleSearchChange('')}
-                  className="absolute inset-y-0 right-0 pr-2 flex items-center text-gray-400 hover:text-gray-500"
-                >
-                  <span className="text-xs">×</span>
-                </button>
-              )}
-            </div>
-           
-            </div>
             )}
           </div>
         </div>
 
-        {/* Main content - scrollable area */}
+        {/* Main content */}
         <div className="flex-1 flex flex-col min-h-0">
-          {/* Fixed navigation items */}
+          {/* Home nav item */}
           <div className="flex-shrink-0">
             {!isCollapsed && (
-              <div 
+              <div
                 onClick={() => router.push('/')}
-                className="p-3  text-lg font-semibold items-center hover:bg-gray-100 h-10   flex mx-3 mt-3 rounded-lg cursor-pointer"
+                className="p-3 text-sm font-semibold items-center hover:bg-accent h-10 flex mx-3 mt-2 rounded-lg cursor-pointer text-foreground transition-colors"
               >
-                <Home className="w-4 h-4 mr-2" />
+                <Home className="w-4 h-4 mr-2 text-muted-foreground" />
                 <span>Home</span>
               </div>
             )}
           </div>
-          
-          {/* Content area */}
+
           <div className="flex-1 flex flex-col min-h-0">
             {renderCollapsedIcons()}
-            {/* Meeting Notes folder header - fixed */}
+
+            {/* Meeting folder header */}
             {!isCollapsed && (
               <div className="flex-shrink-0">
                 {filteredSidebarItems.filter(item => item.type === 'folder').map(item => (
                   <div key={item.id}>
-                    <div
-                      className="flex items-center transition-all duration-150 p-3 text-lg font-semibold h-10 mx-3 mt-3 rounded-lg"
-                    >
-                      <Calendar className="w-4 h-4 mr-2 text-gray-600" />
-                      <span className="text-gray-700">{item.title}</span>
+                    <div className="flex items-center transition-all duration-150 p-3 text-xs font-semibold uppercase tracking-wider h-9 mx-3 mt-2 rounded-lg text-muted-foreground">
+                      <Calendar className="w-3.5 h-3.5 mr-2" />
+                      <span>{item.title}</span>
                       {searchQuery && item.id === 'meetings' && isSearching && (
-                        <span className="ml-2 text-xs text-blue-500 animate-pulse">Searching...</span>
+                        <span className="ml-2 text-xs text-primary animate-pulse">Searching...</span>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
             )}
-            
-            {/* Scrollable meeting items */}
+
+            {/* Scrollable meeting list */}
             {!isCollapsed && (
               <div className="flex-1 overflow-y-auto custom-scrollbar min-h-0">
                 {filteredSidebarItems
@@ -755,35 +737,40 @@ const Sidebar: React.FC = () => {
 
         {/* Footer */}
         {!isCollapsed && (
-          
-          <div className="flex-shrink-0 p-2 border-t border-gray-100">
+          <div className="flex-shrink-0 p-2 border-t border-border">
             <button
-                onClick={handleRecordingToggle}
-                disabled={isRecording}
-                className={`w-full flex items-center justify-center px-3 py-2 text-sm font-medium text-white ${isRecording ? 'bg-red-300 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'} rounded-lg transition-colors shadow-sm`}
-              >
-                {isRecording ? (
-                  <>
-                    <Square className="w-4 h-4 mr-2" />
-                    <span>Recording in progress...</span>
-                  </>
-                ) : (
-                  <>
-                    <Mic className="w-4 h-4 mr-2" />
-                    <span>Start Recording</span>
-                  </>
-                )}
-              </button>
-        
-              <button
-                onClick={() => router.push('/settings')}
-                className="w-full flex items-center justify-center px-3 py-1.5 mt-1 mb-1 text-sm font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors shadow-sm"
-              >
-                <Settings className="w-4 h-4 mr-2" />
-                <span>Settings</span>
-              </button>
-              <Info isCollapsed={isCollapsed} />
-              <div className="w-full flex items-center justify-center px-3 py-1 text-xs text-gray-400">
+              onClick={handleRecordingToggle}
+              disabled={isRecording}
+              className={`w-full flex items-center justify-center px-3 py-2 text-sm font-medium text-white rounded-lg transition-colors shadow-sm ${
+                isRecording ? 'bg-red-400 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'
+              }`}
+            >
+              {isRecording ? (
+                <><Square className="w-4 h-4 mr-2" /><span>Recording...</span></>
+              ) : (
+                <><Mic className="w-4 h-4 mr-2" /><span>Start Recording</span></>
+              )}
+            </button>
+
+            <button
+              onClick={() => router.push('/settings')}
+              className="w-full flex items-center justify-center px-3 py-1.5 mt-1 mb-1 text-sm font-medium text-foreground bg-muted hover:bg-accent rounded-lg transition-colors"
+            >
+              <Settings className="w-4 h-4 mr-2 text-muted-foreground" />
+              <span>Settings</span>
+            </button>
+
+            <Info isCollapsed={isCollapsed} />
+
+            {/* Theme Toggle */}
+            <div className="w-full flex items-center justify-between px-3 py-2">
+              <span className="text-xs text-muted-foreground">Theme</span>
+              <div className="scale-[0.48] origin-right -mr-2">
+                <ThemeToggle />
+              </div>
+            </div>
+
+            <div className="w-full flex items-center justify-center px-3 py-1 text-xs text-muted-foreground">
               v0.1.1 - Pre Release
             </div>
           </div>

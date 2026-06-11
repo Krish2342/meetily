@@ -22,7 +22,8 @@ const sourceSans3 = Source_Sans_3({
   variable: '--font-source-sans-3',
 })
 
-// export { metadata } from './metadata'
+// Runs before React hydration to set dark class — prevents white flash
+const themeScript = `(function(){try{var s=localStorage.getItem('theme'),m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(s===null&&m)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`
 
 export default function RootLayout({
   children,
@@ -32,28 +33,19 @@ export default function RootLayout({
   const [showImportDialog, setShowImportDialog] = useState(false)
 
   useEffect(() => {
-    // Check first launch state immediately on mount (reliable)
     invoke<boolean>('check_first_launch')
       .then((isFirstLaunch) => {
-        console.log('First launch check result:', isFirstLaunch)
-        if (isFirstLaunch) {
-          console.log('First launch detected - showing import dialog')
-          setShowImportDialog(true)
-        }
+        if (isFirstLaunch) setShowImportDialog(true)
       })
       .catch((error) => {
         console.error('Failed to check first launch:', error)
       })
 
-    // Also listen for events (fallback for hot reload and edge cases)
     const unlistenFirstLaunch = listen('first-launch-detected', () => {
-      console.log('First launch event received - showing import dialog')
       setShowImportDialog(true)
     })
 
-    // Listen for database initialized event
     const unlistenDbInit = listen('database-initialized', () => {
-      console.log('Database initialized - hiding import dialog')
       setShowImportDialog(false)
     })
 
@@ -64,14 +56,17 @@ export default function RootLayout({
   }, [])
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Anti-flash dark mode: runs synchronously before paint */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={`${sourceSans3.variable} font-sans`}>
         <AnalyticsProvider>
           <RecordingStateProvider>
             <OllamaDownloadProvider>
               <SidebarProvider>
                 <TooltipProvider>
-                  {/* <div className="titlebar h-8 w-full fixed top-0 left-0 bg-transparent" /> */}
                   <div className="flex">
                     <Sidebar />
                     <MainContent>{children}</MainContent>
@@ -81,7 +76,7 @@ export default function RootLayout({
             </OllamaDownloadProvider>
           </RecordingStateProvider>
         </AnalyticsProvider>
-        <Toaster position="bottom-center" richColors closeButton />
+        <Toaster position="bottom-center" richColors closeButton theme="system" />
         <LegacyDatabaseImport
           isOpen={showImportDialog}
           onComplete={() => setShowImportDialog(false)}
