@@ -1,0 +1,48 @@
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+.next/
+.pnpm-store/
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+frontend/.env
+frontend/.env.local
+frontend/.env*.local
+
+# ── Rust / Tauri ──────────────────────────────────────────────────────────────
+frontend/src-tauri/target/
+frontend/src-tauri/WixTools/
+
+# ── Python / Backend ──────────────────────────────────────────────────────────
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/.env
+*.egg-info/
+
+# ── Whisper Models (large binary files) ───────────────────────────────────────
+backend/whisper-server-package/models/*.bin
+backend/whisper-server-package/models/*.gguf
+
+# ── Database & Local Data ─────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+frontend/src-tauri/*.db
+
+# ── OS & Editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.user
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Build Outputs ─────────────────────────────────────────────────────────────
+dist/
+build/

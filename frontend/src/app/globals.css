@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.animate-vibrate {
+  animation: vibrate 0.3s linear;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  /* html, */
+  body {
+    @apply bg-background text-foreground;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* Make the window draggable */
+  .titlebar {
+    -webkit-app-region: drag;
+    app-region: drag;
+  }
+
+  .no-drag {
+    -webkit-app-region: no-drag;
+    app-region: no-drag;
+  }
+
+  /* Custom scrollbar styles */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  /* Firefox scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+
+  /* BlockNote Editor - Override fixed dimensions for responsive layout */
+  .bn-container {
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  .bn-editor {
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  /* Disable internal scrolling - let parent handle all scrolling */
+  .ProseMirror {
+    overflow: visible !important;
+  }
+
+  /* Ensure BlockNote content area is responsive */
+  .bn-block-outer {
+    max-width: 100% !important;
+  }
+
+  .bn-default-styles {
+    max-width: none !important;
+  }
+
+  /* Disable scrolling on any BlockNote wrapper elements */
+  [data-node-type] {
+    overflow: visible !important;
+  }
+}
+
+/* ── Markdown Summary Styles ─────────────────────────────────────────────── */
+.markdown-summary {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #1a1a2e;
+}
+
+.markdown-summary h1,
+.markdown-summary h2,
+.markdown-summary h3,
+.markdown-summary h4 {
+  font-weight: 700;
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+  color: #111827;
+}
+
+.markdown-summary h1 { font-size: 1.4rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.3em; }
+.markdown-summary h2 { font-size: 1.2rem; border-bottom: 1px solid #f3f4f6; padding-bottom: 0.2em; }
+.markdown-summary h3 { font-size: 1rem; }
+
+.markdown-summary p {
+  margin: 0.6em 0;
+}
+
+.markdown-summary ul,
+.markdown-summary ol {
+  padding-left: 1.5em;
+  margin: 0.6em 0;
+}
+
+.markdown-summary li {
+  margin: 0.3em 0;
+}
+
+.markdown-summary strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+.markdown-summary em {
+  font-style: italic;
+  color: #374151;
+}
+
+.markdown-summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.markdown-summary thead {
+  background: #f1f5f9;
+}
+
+.markdown-summary th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: #374151;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.markdown-summary td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+}
+
+.markdown-summary tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-summary tr:nth-child(even) td {
+  background: #f9fafb;
+}
+
+.markdown-summary code {
+  background: #f1f5f9;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #6366f1;
+}
+
+.markdown-summary blockquote {
+  border-left: 4px solid #6366f1;
+  padding: 0.4em 1em;
+  background: #f5f3ff;
+  border-radius: 0 6px 6px 0;
+  color: #4b5563;
+  margin: 0.8em 0;
+}
+
+.markdown-summary hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.2em 0;
+}
