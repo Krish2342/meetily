@@ -96,9 +96,9 @@ export function SummaryGeneratorButtonGroup({
     <ButtonGroup>
       {/* Generate Summary button */}
       <Button
-        variant="outline"
+        variant="default"
         size="sm"
-        className="bg-gradient-to-r from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 border-blue-200 xl:px-4"
+        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-sm xl:px-4 transition-all"
         onClick={() => {
           Analytics.trackButtonClick('generate_summary', 'meeting_details');
           checkOllamaModelsAndGenerate();
