@@ -1,129 +1,157 @@
 <div align="center">
 
 <h1>🎙️ Meetily</h1>
-<p><strong>Your AI-Powered Meeting Assistant — Record, Transcribe, Summarize & Follow-Up in 1 Click</strong></p>
+<h3>Privacy-First AI Meeting Assistant</h3>
 
-[![Version](https://img.shields.io/badge/version-v0.1.1-blue?style=flat-square)](https://github.com/your-repo/meetily)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey?style=flat-square)]()
-[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)]()
-[![Built with Tauri](https://img.shields.io/badge/built%20with-Tauri%20%2B%20Next.js-orange?style=flat-square)]()
-[![AI Powered](https://img.shields.io/badge/AI-Ollama%20%7C%20OpenAI%20%7C%20Gemini-purple?style=flat-square)]()
+<p>
+  <a href="https://github.com/Krish2342/meetily/releases/"><img src="https://img.shields.io/badge/Pre_Release-v0.1.1-brightgreen?style=flat-square" alt="Pre-Release"></a>
+  <a href="https://github.com/Krish2342/meetily"><img src="https://img.shields.io/github/stars/Krish2342/meetily?style=flat-square&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/Krish2342/meetily/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License"></a>
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey?style=flat-square" alt="Platform">
+  <img src="https://img.shields.io/badge/Built%20with-Tauri%20%2B%20Next.js-orange?style=flat-square" alt="Tauri">
+  <img src="https://img.shields.io/badge/AI-Ollama%20%7C%20OpenAI%20%7C%20Gemini-purple?style=flat-square" alt="AI">
+</p>
 
 <br/>
 
-![Meetily Demo](docs/images/demo_screenshot.png)
+<p><strong>Open Source &nbsp;•&nbsp; Privacy-First &nbsp;•&nbsp; Works Offline &nbsp;•&nbsp; No Subscription</strong></p>
+
+<p>
+A privacy-first AI meeting assistant that captures, transcribes, and summarizes meetings entirely on your local machine — no cloud required. Built for professionals who need complete control over their sensitive data.
+</p>
 
 </div>
 
 ---
 
+<details>
+<summary>📋 Table of Contents</summary>
+
+- [What is Meetily?](#-what-is-meetily)
+- [Why Meetily?](#-why-meetily)
+- [Features](#-features)
+- [New: 1-Click Follow-Up Email](#-1-click-follow-up-email-drafter--new)
+- [Getting Started](#-getting-started)
+- [AI Model Setup](#-ai-model-setup)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [Tech Stack](#-tech-stack)
+- [Privacy](#-privacy)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+</details>
+
+---
+
 ## 📖 What is Meetily?
 
-**Meetily** is a privacy-first, offline-capable AI meeting assistant that runs entirely on your desktop. It automatically records your meetings, transcribes them in real-time using Whisper, and uses a local or cloud AI model to generate structured meeting notes — including a one-click **Follow-Up Email Draft** ready to paste directly into your inbox.
+Meetily is a desktop app that records your meetings, transcribes them live using **Whisper.cpp**, and uses AI to generate clean, structured meeting notes — including an automatic **Follow-Up Email Draft** you can send with one click.
 
-No cloud uploads. No subscription required for local mode. Your meeting data stays on your machine.
+Everything runs **locally on your machine**. No subscriptions. No data sent to the cloud (when using Ollama).
+
+---
+
+## 💡 Why Meetily?
+
+| Problem | Meetily's Solution |
+|---|---|
+| Cloud tools upload your private conversations | All processing happens locally on your device |
+| Expensive monthly subscriptions | Free with open-source AI models (Ollama) |
+| Manual note-taking wastes time | AI generates structured notes automatically |
+| Writing follow-up emails takes time | AI drafts the email — you just hit send |
+| Complex enterprise tools | Simple desktop app, runs in 3 commands |
 
 ---
 
 ## ✨ Features
 
-### 🎙️ Live Transcription
+### 🎙️ Live Real-Time Transcription
 - Real-time speech-to-text powered by **Whisper.cpp**
 - Timestamped transcript segments shown as you speak
-- Speaker diarization support (identifies multiple speakers)
-- Works completely offline with local Whisper models
+- Speaker diarization (identifies multiple speakers)
+- Works fully **offline** — no internet required
 
 ### 🤖 AI Meeting Summarizer
-- Generates structured meeting notes instantly after recording
-- Supports multiple AI providers:
-  - **Ollama** (fully local/offline — e.g., `gemma3:1b`, `llama3`, `mistral`)
-  - **OpenAI** (GPT-4o, GPT-4 Turbo)
-  - **Google Gemini** (Gemini Pro)
-- Customizable summary templates (General, Engineering, Sales, etc.)
-- Add custom context/prompt before generating
+- Generates structured notes instantly after recording
+- Supports **Ollama** (local), **OpenAI** (GPT-4o), and **Google Gemini**
+- Multiple summary templates for different meeting types
+- Add custom context or instructions before generating
 
 ### 📋 Structured Summary Output
-Each generated note includes:
-| Section | Description |
-|---|---|
-| **Summary** | A concise paragraph overview of the meeting |
-| **Key Decisions** | Bullet list of all decisions made |
-| **Action Items** | Formatted table with Owner, Task, Due Date, and Timestamps |
-| **Discussion Highlights** | Key talking points and discussion context |
-| **Follow-Up Email Draft** | A ready-to-send professional email ⭐ **NEW** |
 
-### 📧 1-Click Follow-Up Email Drafter ⭐ NEW
+Every generated note automatically includes:
+
+| Section | What it contains |
+|---|---|
+| **Summary** | One-paragraph overview of the full meeting |
+| **Key Decisions** | Bullet list of every decision made |
+| **Action Items** | Table: Owner · Task · Due Date · Timestamp |
+| **Discussion Highlights** | Key talking points with context |
+| **Follow-Up Email Draft** | Ready-to-send professional email ⭐ NEW |
+
+### 📁 Meeting History
+- All meetings saved locally (SQLite database)
+- Searchable meeting list in the sidebar
+- Click any past meeting to view its transcript + summary
+
+### 💾 Edit & Save Notes
+- All AI-generated notes are fully editable
+- Save with the **Save** button or changes persist automatically
+
+### 🎨 Summary Templates
+- **General Meeting** — works for any meeting
+- **Daily Standup** — blockers, progress, goals
+- **Sales Call** — pain points, objections, next steps
+- **Project Sync** — decisions, owners, timelines
+- **Retrospective** — what went well, improvements
+
+---
+
+## 📧 1-Click Follow-Up Email Drafter ⭐ NEW
 
 > **The most requested feature — now built right in!**
 
-After your meeting summary is generated, Meetily automatically drafts a professional follow-up email based on the meeting content. With a single click of the **"Copy Email"** button, the email is copied to your clipboard — ready to paste directly into Gmail, Outlook, or any email client.
-
-![Copy Email Feature](docs/images/copy_email_feature.png)
+After your meeting summary generates, Meetily automatically drafts a professional follow-up email. Just click **"Copy Email"** and paste it straight into Gmail or Outlook.
 
 **How it works:**
-1. 🎙️ **Record** your meeting as usual
-2. ✨ Click **"Generate Note"** — the AI writes the summary AND the email
-3. 📧 Click **"Copy Email"** at the top of the screen
-4. 📋 **Paste** into Gmail or Outlook — done in seconds!
-
-**Example output:**
 
 ```
-Subject: Follow-Up: Q3 Marketing Review & LinkedIn Budget Shift
+1. 🎙️  Record your meeting
+       ↓
+2. ✨  Click "Generate Note"
+       → AI writes the full summary
+       → AI drafts the follow-up email
+       ↓
+3. 📧  Click "Copy Email" button
+       ↓
+4. 📋  Paste into Gmail / Outlook → Send!
+```
+
+**Real example output:**
+
+```
+Subject: Follow-Up: Q3 Marketing Review — Action Items & Next Steps
 
 Hi Team,
 
-Following our Q3 marketing review meeting today, I wanted to summarize
-our key decisions and next steps.
+Following our Q3 marketing review, I wanted to confirm our key decisions
+and next steps.
 
+Key Decision:
 We have agreed to shift 20% of our ad budget from Facebook to LinkedIn
-starting next month to better support our B2B lead performance goals.
+starting next month to better support our B2B lead performance.
 
 Action Items:
-- Sarah: Finalize LinkedIn ad creatives by Wednesday
-- Mark: Pull Facebook performance report by Friday afternoon
-- Full team check-in: Monday
+• Sarah  — Finalize LinkedIn ad creatives by Wednesday
+• Mark   — Pull Facebook performance report by Friday afternoon
+• Team   — Check-in call on Monday to review progress
 
-Please feel free to reach out if you have any questions.
+Please reach out if you have any questions before then.
 
 Best regards,
 [Your Name]
 ```
-
-### 📁 Meeting History & Search
-- All past meetings saved locally in a database
-- Sidebar with searchable meeting list
-- Click any past meeting to view its transcript and summary
-
-### 💾 Save & Edit Notes
-- All AI-generated notes are fully editable
-- Changes auto-save or manually save with the **"Save"** button
-- Export summary as Markdown
-
-### 🎨 Multiple Summary Templates
-Choose the right template for your meeting type:
-- **General Meeting** — Works for any meeting
-- **Engineering Standup** — Sprint progress, blockers, technical decisions
-- **Sales Call** — Customer pain points, objections, follow-up actions
-- **Product Review** — Feature decisions, roadmap, design feedback
-- *(More templates can be added by the community)*
-
----
-
-## 🖥️ Demo
-
-### How the 1-Click Email Feature Works
-
-> 📹 **Video Demo:** *(Coming soon — record your first meeting and see it in action!)*
-
-**Quick Test Script** — Read this aloud after clicking "Start Recording":
-
-> *"Alright everyone, let's wrap up our Q3 marketing review. We've officially decided to shift 20% of our ad budget from Facebook over to LinkedIn starting next month, since our B2B leads are performing much better there. Sarah, I need you to finalize the new LinkedIn ad creatives by next Wednesday. Mark, please pull the final performance report by Friday afternoon. Let's touch base again on Monday. Great work, team."*
-
-After clicking **"Generate Note"**, the AI will produce:
-- ✅ A clean structured summary
-- ✅ An Action Items table with Sarah and Mark's tasks
-- ✅ A professional follow-up email — ready to copy and send!
 
 ---
 
@@ -141,74 +169,90 @@ After clicking **"Generate Note"**, the AI will produce:
 
 ---
 
-### ⚡ Quick Start (Windows)
+### ⚡ Quick Start — Windows
 
-**Step 1: Clone the repository**
 ```bash
-git clone https://github.com/your-repo/meetily.git
+# 1. Clone the repository
+git clone https://github.com/Krish2342/meetily.git
 cd meetily
-```
 
-**Step 2: Start everything with one command**
-```bash
+# 2. Run everything with one command
 start_project.bat
 ```
-This script automatically starts the Whisper server, the Python AI backend, and the Tauri desktop app.
+
+The app window will open automatically.
 
 ---
 
 ### 🔧 Manual Setup
 
-#### 1. Start the Whisper Transcription Server
+**Step 1 — Start the Whisper transcription server:**
 ```bash
 cd backend/whisper-server-package
 ./whisper-server.exe --model models/ggml-tiny.en.bin --host 127.0.0.1 --port 8178 --diarize --language en
 ```
 
-> 💡 **Tip:** Use `ggml-small.en.bin` or `ggml-medium.en.bin` for better transcription accuracy.
+> 💡 Use `ggml-small.en.bin` or `ggml-medium.en.bin` for better accuracy.
 
-#### 2. Start the Python AI Backend
+**Step 2 — Start the Python AI backend:**
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate       # Windows
+# source venv/bin/activate  # macOS / Linux
 pip install -r requirements.txt
 python app/main.py
 ```
 
-#### 3. Start the Desktop App
+**Step 3 — Start the desktop app:**
 ```bash
 cd frontend
 pnpm install
 npx tauri dev
 ```
 
-The Meetily desktop window will open automatically.
+---
+
+## 🤖 AI Model Setup
+
+### Option A — Local / Offline (Ollama) ✅ Recommended
+
+```bash
+# Install Ollama → https://ollama.com
+ollama pull gemma3:1b     # Fast, lightweight (good for testing)
+ollama pull llama3        # Better quality summaries
+ollama pull mistral       # Excellent for meeting notes
+```
+
+In Meetily: click **AI Model** → set Provider to **Ollama** → select your model.
+
+### Option B — OpenAI (Cloud)
+
+1. Click **AI Model** in the app
+2. Set Provider to **OpenAI**
+3. Enter your API key
+4. Choose `gpt-4o` or `gpt-4-turbo`
+
+### Option C — Google Gemini (Cloud)
+
+1. Click **AI Model** in the app
+2. Set Provider to **Gemini**
+3. Enter your Google AI API key
 
 ---
 
-### 🤖 Setting Up Your AI Model
+## 📖 Usage
 
-#### Option A: Local (Offline) — Ollama
-```bash
-# Install Ollama from https://ollama.com
-ollama pull gemma3:1b        # Lightweight, fast (recommended for testing)
-ollama pull llama3           # Better quality summaries
-ollama pull mistral          # Excellent for meeting notes
 ```
-In Meetily, click **AI Model → Provider: Ollama** and select your model.
-
-#### Option B: Cloud — OpenAI
-1. Click **AI Model** in the app
-2. Select **Provider: OpenAI**
-3. Enter your OpenAI API key
-4. Select model: `gpt-4o` or `gpt-4-turbo`
-
-#### Option C: Cloud — Google Gemini
-1. Click **AI Model** in the app
-2. Select **Provider: Gemini**
-3. Enter your Google AI API key
+1. Open Meetily
+2. Click "Start Recording" — speak naturally during your meeting
+3. Watch live transcript appear on the left panel
+4. Click "Stop" when the meeting ends
+5. Click "Generate Note" — AI produces the full structured summary
+6. Read through: Summary → Key Decisions → Action Items table
+7. Scroll down to see the Follow-Up Email Draft
+8. Click "Copy Email" → paste into Gmail / Outlook → send!
+```
 
 ---
 
@@ -218,28 +262,25 @@ In Meetily, click **AI Model → Provider: Ollama** and select your model.
 meetily/
 ├── backend/                          # Python FastAPI AI backend
 │   ├── app/
-│   │   ├── main.py                   # FastAPI server entry point
-│   │   └── transcript_processor.py  # AI summarization & email drafting
+│   │   ├── main.py                   # API server entry point
+│   │   └── transcript_processor.py   # AI summarization + email drafting
 │   └── whisper-server-package/       # Pre-built Whisper.cpp binary
 │       └── models/                   # Whisper model files (.bin)
 │
 ├── frontend/                         # Tauri + Next.js desktop app
 │   ├── src/
-│   │   ├── app/                      # Next.js pages
+│   │   ├── app/                      # Next.js pages & routing
 │   │   ├── components/               # React UI components
-│   │   │   ├── AISummary/            # Summary rendering (react-markdown)
-│   │   │   └── MeetingDetails/       # Meeting detail panels & buttons
-│   │   └── hooks/                    # Business logic hooks
+│   │   │   ├── AISummary/            # Summary rendering
+│   │   │   └── MeetingDetails/       # Toolbar buttons & panels
+│   │   └── hooks/                    # Business logic (copy, save, generate)
 │   └── src-tauri/                    # Rust Tauri backend
 │       └── src/
 │           ├── audio/                # Audio capture & recording
-│           └── api/                  # Native API commands
+│           └── api/                  # Native Tauri commands
 │
-├── docs/
-│   └── images/                       # README assets
-│
-├── start_project.bat                 # One-click launcher (Windows)
-└── README.md                         # This file
+├── start_project.bat                 # One-click Windows launcher
+└── README.md
 ```
 
 ---
@@ -248,83 +289,76 @@ meetily/
 
 | Layer | Technology |
 |---|---|
-| **Desktop Runtime** | [Tauri](https://tauri.app/) (Rust) |
-| **Frontend** | [Next.js 14](https://nextjs.org/) + React + TypeScript |
-| **Styling** | Tailwind CSS + shadcn/ui |
-| **Transcription** | [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) |
-| **AI Backend** | Python FastAPI |
-| **AI Models** | Ollama / OpenAI / Google Gemini |
-| **Database** | SQLite (local, via Tauri) |
-| **Markdown Rendering** | react-markdown + remark-gfm |
+| Desktop Runtime | [Tauri](https://tauri.app/) (Rust) |
+| Frontend | [Next.js 14](https://nextjs.org/) + React + TypeScript |
+| Styling | Tailwind CSS + shadcn/ui |
+| Transcription | [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) |
+| AI Backend | Python + FastAPI |
+| AI Providers | Ollama / OpenAI / Google Gemini |
+| Database | SQLite (local, via Tauri) |
+| Markdown Rendering | react-markdown + remark-gfm |
 
 ---
 
 ## 🔒 Privacy
 
-Meetily is designed with **privacy first**:
-- ✅ All recordings processed **locally on your machine**
-- ✅ Transcriptions done via **local Whisper** — no audio ever leaves your device
-- ✅ When using **Ollama**, AI summarization is also 100% local/offline
-- ⚠️ When using OpenAI/Gemini, transcript text is sent to their APIs (subject to their privacy policies)
+| What | Status |
+|---|---|
+| Audio recordings | ✅ Processed **locally** — never uploaded |
+| Transcription (Whisper) | ✅ Runs **locally** — no audio leaves your device |
+| AI summarization (Ollama) | ✅ Runs **100% offline** |
+| AI summarization (OpenAI/Gemini) | ⚠️ Transcript text sent to their APIs |
+| Meeting database | ✅ Stored **locally** in SQLite |
 
 ---
 
 ## 🗺️ Roadmap
 
-- [x] Live real-time transcription
+- [x] Live real-time transcription (Whisper.cpp)
 - [x] AI meeting summarization (Ollama, OpenAI, Gemini)
-- [x] Structured notes (Key Decisions, Action Items, Discussion Highlights)
-- [x] **1-Click Follow-Up Email Drafter** ⭐
+- [x] Structured notes — Key Decisions, Action Items table
+- [x] Multiple AI summary templates
 - [x] Meeting history & search
-- [x] Multiple AI templates
 - [x] Editable notes with save
-- [ ] Calendar integration (Google Calendar / Outlook)
+- [x] **1-Click Follow-Up Email Drafter** ⭐ NEW
+- [ ] Google Calendar / Outlook integration
 - [ ] Automatic speaker name detection
 - [ ] Export to Notion / Confluence
+- [ ] Slack / Teams post-meeting notification
 - [ ] Meeting recording playback
-- [ ] Slack/Teams notification after meeting
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how to get started:
+Contributions are welcome! Here's how:
 
 ```bash
-# Fork the repo and clone your fork
+# 1. Fork and clone
 git clone https://github.com/YOUR-USERNAME/meetily.git
 
-# Create a feature branch
+# 2. Create a branch
 git checkout -b feature/your-feature-name
 
-# Make your changes and commit
-git commit -m "feat: add your feature"
+# 3. Commit your changes
+git commit -m "feat: describe your change"
 
-# Push and open a Pull Request
+# 4. Push and open a Pull Request
 git push origin feature/your-feature-name
 ```
 
-Please follow conventional commits (`feat:`, `fix:`, `docs:`, `chore:`).
+Please use conventional commit prefixes: `feat:`, `fix:`, `docs:`, `chore:`
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgements
-
-- [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) — blazing fast local speech recognition
-- [Ollama](https://ollama.com/) — running large language models locally
-- [Tauri](https://tauri.app/) — lightweight, secure desktop apps with Rust + web tech
-- [BlockNote](https://www.blocknotejs.org/) — rich text editor for meeting notes
-- [shadcn/ui](https://ui.shadcn.com/) — beautiful, accessible UI components
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
-  <p>Made with ❤️ for people who hate writing meeting notes</p>
-  <p><strong>⭐ Star this repo if Meetily saves you time!</strong></p>
+  <br/>
+  <p>Made with ❤️ for people who hate writing meeting notes manually</p>
+  <p>⭐ <strong>Star this repo if Meetily saves you time!</strong></p>
 </div>
