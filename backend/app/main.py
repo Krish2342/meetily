@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Form
+from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -11,8 +11,6 @@ import json
 from threading import Lock
 from transcript_processor import TranscriptProcessor
 import time
-import io
-
 
 # Load environment variables
 load_dotenv()
@@ -170,8 +168,6 @@ class SummaryProcessor:
 # Initialize processor
 processor = SummaryProcessor()
 
-
-
 # New meeting management endpoints
 @app.get("/get-meetings", response_model=List[MeetingResponse])
 async def get_meetings():
@@ -228,8 +224,6 @@ async def process_transcript_background(process_id: str, transcript: TranscriptR
         # Early validation for common issues
         if not transcript.text or not transcript.text.strip():
             raise ValueError("Empty transcript text provided")
-            
-
         
         if transcript.model in ["claude", "groq", "openai"]:
             # Check if API key is available for cloud providers
@@ -256,7 +250,6 @@ async def process_transcript_background(process_id: str, transcript: TranscriptR
             "KeyItemsDecisions": {"title": "Key Items & Decisions", "blocks": []},
             "ImmediateActionItems": {"title": "Immediate Action Items", "blocks": []},
             "NextSteps": {"title": "Next Steps", "blocks": []},
-            "FollowUpEmail": {"title": "Follow-Up Email Draft", "blocks": []},
             # "OtherImportantPoints": {"title": "Other Important Points", "blocks": []},
             # "ClosingRemarks": {"title": "Closing Remarks", "blocks": []},
             "MeetingNotes": {

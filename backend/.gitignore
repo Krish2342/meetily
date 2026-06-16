@@ -288,9 +288,3 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,flask,venv
-
-# Local log outputs
-stdout.txt
-stderr.txt
-whisper_stdout.txt
-whisper_stderr.txt
