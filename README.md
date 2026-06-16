@@ -22,7 +22,7 @@ A privacy-first AI meeting assistant that captures, transcribes, and summarizes 
 
 <br/>
 <p align="center">
-  <img src="docs/meetily_demo.gif" width="650" alt="Meetily Demo" />
+  <img src="docs/my_demo.mp4" width="650" alt="Meetily Demo" />
 </p>
 
 </div>
