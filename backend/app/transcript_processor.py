@@ -73,7 +73,6 @@ class SummaryResponse(BaseModel):
     KeyItemsDecisions: Section
     ImmediateActionItems: Section
     NextSteps: Section
-    FollowUpEmail: Section
     MeetingNotes: MeetingNotes
 
 # --- Main Class Used by main.py ---
@@ -181,8 +180,6 @@ class TranscriptProcessor:
                             - Use 'heading2' for subheadings
                             
                             For the color field, use 'gray' for less important content or '' (empty string) for default.
-                            
-                            For the FollowUpEmail section, draft a professional follow-up email addressed to all meeting participants summarizing the discussion and next steps. Use 'text' blocks for the email body.
 
                             Transcript Chunk:
                             ---
@@ -240,8 +237,6 @@ class TranscriptProcessor:
         'role': 'system',
         'content': f'''
         Given the following meeting transcript chunk, extract the relevant information according to the required JSON structure. If a specific section (like Critical Deadlines) has no relevant information in this chunk, return an empty list for its 'blocks'. Ensure the output is only the JSON data.
-        
-        For the FollowUpEmail section, draft a professional follow-up email addressed to all meeting participants summarizing the discussion and next steps. Use 'text' blocks for the email body.
 
         Transcript Chunk:
             ---

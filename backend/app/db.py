@@ -156,8 +156,6 @@ class DatabaseManager:
                 )
             """)
 
-
-
             conn.commit()
 
     @asynccontextmanager
@@ -910,4 +908,6 @@ class DatabaseManager:
         except Exception as e:
             logger.error(f"Error updating meeting summary: {str(e)}")
             raise
+
+   
 
