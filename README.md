@@ -204,6 +204,9 @@ cd backend/whisper-server-package
 cd backend
 python -m venv venv
 venv\Scripts\activate       # Windows
+python app\main.py
+
+
 # source venv/bin/activate  # macOS / Linux
 pip install -r requirements.txt
 python app/main.py
@@ -213,7 +216,7 @@ python app/main.py
 ```bash
 cd frontend
 pnpm install
-npx tauri dev
+pnpm run tauri dev
 ```
 
 ---
@@ -356,14 +359,9 @@ Please use conventional commit prefixes: `feat:`, `fix:`, `docs:`, `chore:`
 
 ---
 
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
----
 
 <div align="center">
   <br/>
-  <p>Made with ❤️ for people who hate writing meeting notes manually</p>
+  <p>🎙️ Record. Summarize. Follow up.</p>
   <p>⭐ <strong>Star this repo if Meetily saves you time!</strong></p>
 </div>
